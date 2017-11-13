@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Pc-PU-26l">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--FeedVC-->
+        <scene sceneID="qIx-zf-off">
+            <objects>
+                <viewController storyboardIdentifier="Feed" id="3Pc-PU-26l" customClass="FeedVC" customModule="Chathoo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G6S-qk-0Mg"/>
+                        <viewControllerLayoutGuide type="bottom" id="doq-AU-g6i"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lSs-JE-zL4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D4p-Br-eKk">
+                                <rect key="frame" x="0.0" y="43" width="375" height="639"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="PbY-b8-hw0" customClass="FeedCell" customModule="Chathoo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PbY-b8-hw0" id="7P9-h4-0Dq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="3Pc-PU-26l" id="dZq-31-KpP"/>
+                                    <outlet property="delegate" destination="3Pc-PU-26l" id="fa7-OU-tmo"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgD-GM-EJm">
+                                <rect key="frame" x="299" y="691" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="eKa-no-9jv"/>
+                                </constraints>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutAction:" destination="3Pc-PU-26l" eventType="touchUpInside" id="teD-P6-neZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="doq-AU-g6i" firstAttribute="top" secondItem="UgD-GM-EJm" secondAttribute="bottom" constant="8" id="IWB-lH-udE"/>
+                            <constraint firstAttribute="trailing" secondItem="D4p-Br-eKk" secondAttribute="trailing" id="Sam-qG-7KV"/>
+                            <constraint firstItem="D4p-Br-eKk" firstAttribute="top" secondItem="G6S-qk-0Mg" secondAttribute="bottom" id="cry-cT-ocY"/>
+                            <constraint firstItem="UgD-GM-EJm" firstAttribute="top" secondItem="D4p-Br-eKk" secondAttribute="bottom" constant="8" id="eVL-tO-chn"/>
+                            <constraint firstItem="D4p-Br-eKk" firstAttribute="leading" secondItem="lSs-JE-zL4" secondAttribute="leading" id="spg-UL-Cay"/>
+                            <constraint firstItem="UgD-GM-EJm" firstAttribute="trailing" secondItem="lSs-JE-zL4" secondAttribute="trailingMargin" id="v3n-14-JXa"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="hgd-L8-a7o"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="feedTB" destination="D4p-Br-eKk" id="3LT-Hv-oiR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kRE-Qp-aID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="792.79999999999995" y="589.65517241379314"/>
+        </scene>
+    </scenes>
+</document>
