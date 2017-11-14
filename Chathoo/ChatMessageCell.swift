@@ -11,7 +11,7 @@ import AVFoundation
 
 class ChatMessageCell: UICollectionViewCell {
     
-    var chatLogController: ChatLogController?
+    var chatLogController: ChatLogVC?
     var message: Message?
     
     let activitiyIndicatorView: UIActivityIndicatorView = {
@@ -34,7 +34,7 @@ class ChatMessageCell: UICollectionViewCell {
     var playerLayer: AVPlayerLayer?
     var player: AVPlayer?
     
-    func handlePlay() {
+    @objc func handlePlay() {
         if let videoUrlString = message?.videoUrl, let url = URL(string: videoUrlString) {
             player = AVPlayer(url: url)
             playerLayer = AVPlayerLayer(player: player)
@@ -97,7 +97,7 @@ class ChatMessageCell: UICollectionViewCell {
         return imageView
     }()
     
-    func handleZoomTap(tapGesture: UITapGestureRecognizer) {
+    @objc func handleZoomTap(tapGesture: UITapGestureRecognizer) {
         if message?.videoUrl != nil {
             return
         }

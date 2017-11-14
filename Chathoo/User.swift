@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 class User {
     private var _username: String
     private var _userEmail: String
@@ -17,7 +15,8 @@ class User {
     private var _likes: Int
     private var _provider: String
     private var _joinedGroups: [String]
-    
+    private var _profileImageUrl: String
+
     
     var username: String {
         return _username
@@ -43,13 +42,18 @@ class User {
         return _joinedGroups
     }
     
-    init(username: String, email: String, uid: String, likes: Int, provider: String, groups: [String]) {
+    var profileImageUrl: String {
+        return _profileImageUrl
+    }
+    
+    init(username: String, email: String, uid: String, likes: Int, provider: String, groups: [String], imageUrl: String) {
         self._username = username
         self._userEmail = email
         self._userUID = uid
         self._likes = likes
         self._provider = provider
         self._joinedGroups = groups
+        self._profileImageUrl = imageUrl
     }
     
 }

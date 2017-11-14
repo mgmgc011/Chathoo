@@ -24,7 +24,7 @@ let kEMAIL = "email"
 let kUID = "uid"
 let kLIKES = "likes"
 let kPROVIDER = "provider"
-
+let kIMAGEURL = "imageURL"
 
 class DataService {
     
@@ -59,7 +59,8 @@ class DataService {
             let likes = userSnapshot.value(forKey: kLIKES) as! Int
             let provider = userSnapshot.value(forKey: kPROVIDER) as! String
             let groups = userSnapshot.value(forKey: kGROUPS) as! [String]
-            let user = User(username: username, email: userEmail, uid: userUID, likes: likes, provider: provider, groups: groups)
+            let imageURL = userSnapshot.value(forKey: kIMAGEURL) as! String
+            let user = User(username: username, email: userEmail, uid: userUID, likes: likes, provider: provider, groups: groups, imageUrl: imageURL)
             handler(user)
         })
     }

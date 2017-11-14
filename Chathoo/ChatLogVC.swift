@@ -8,13 +8,11 @@
 
 import UIKit
 import Firebase
-
 import MobileCoreServices
 import AVFoundation
 
-//class ChatLogController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
+class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
 
     var user: User? {
@@ -27,14 +25,14 @@ class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionVi
     var messages = [Message]()
 
     func observeMessages() {
-        guard let uid = Auth.auth()?.currentUser?.uid, let toId = user?.id else {
+        guard let uid = Auth.auth().currentUser?.uid, let toId = user?.userUID else {
             return
         }
 
         let userMessagesRef = Database.database().reference().child("user-messages").child(uid).child(toId)
         userMessagesRef.observe(.childAdded, with: { (snapshot) in
             let messageId = snapshot.key
-            let messagesRef = FIRDatabase.database().reference().child("messages").child(messageId)
+            let messagesRef = Database.database().reference().child("messages").child(messageId)
 
             messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
 
@@ -76,128 +74,128 @@ class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionVi
 
         setupKeyBoardObservers()
     }
-//
-//    lazy var inputContainerView: ChatInputContainerView = {
-//        let chatInputContainerView = ChatInputContainerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
-//        chatInputContainerView.chatLogController = self
-//        return chatInputContainerView
-//    }()
-//
-//    func handleUploadTap() {
-//        let imagePickerController = UIImagePickerController()
-//
-//        imagePickerController.allowsEditing = true
-//        imagePickerController.delegate = self
-//        imagePickerController.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
-//
-//        present(imagePickerController, animated: true, completion: nil)
-//    }
-//
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//
-//        if let videoUrl = info[UIImagePickerControllerMediaURL] {
-//            handleVideoSelectedForUrl(url: videoUrl as! NSURL)
-//        } else {
-//            handleImageSelectedForInfo(info: info as [String : AnyObject])
-//        }
-//
-//        dismiss(animated: true, completion: nil)
-//    }
-//
-//    private func handleImageSelectedForInfo(info: [String: AnyObject]) {
-//        var selectedImageFromPicker: UIImage?
-//
-//        if let editedImage = info["UIImagePickerControllerEditedImage"] {
-//            selectedImageFromPicker = editedImage as? UIImage
-//        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] {
-//            selectedImageFromPicker = originalImage as? UIImage
-//        }
-//
-//        if let selctedImage = selectedImageFromPicker {
-//            uploadToFirebaseStorageUsingImage(image: selctedImage, completion: { (imageUrl) in
-//                self.sendMessageWithImageUrl(imageUrl: imageUrl, image: selctedImage)
-//            })
-//        }
-//    }
-//
-//    private func handleVideoSelectedForUrl(url: NSURL) {
-//        let filename = NSUUID().uuidString + ".mov"
-//        let uploadTask = FIRStorage.storage().reference().child("message_movies").child(filename).putFile(url as URL, metadata: nil, completion: { (metadata, error) in
-//            if error != nil {
-//                print(error!)
-//            }
-//
-//            if let videoUrl = metadata?.downloadURL()?.absoluteString {
-//
-//
-//                if let thumbnailImage = self.thumbnailImageForFileUrl(fileUrl: url) {
-//
-//                    self.uploadToFirebaseStorageUsingImage(image: thumbnailImage, completion: { (imageUrl) in
-//                        let properties: [String: AnyObject] = ["imageUrl": imageUrl as AnyObject,
-//                                                               "imageWidth": thumbnailImage.size.width as AnyObject,
-//                                                               "imageHeight": thumbnailImage.size.height as AnyObject,
-//                                                               "videoUrl": videoUrl as AnyObject]
-//                        self.sendMessageWithProperties(properties: properties)
-//                    })
-//                }
-//
-//            }
-//
-//        })
-//
-//        uploadTask.observe(.progress) { (snapshot) in
-//            if let completedUnitCount = snapshot.progress?.completedUnitCount {
-//                self.navigationItem.title = String(completedUnitCount)
-//            }
-//        }
-//
-//        uploadTask.observe(.success) { (snapshot) in
-//            self.navigationItem.title = self.user?.name
-//        }
-//
-//    }
-//
-//    private func thumbnailImageForFileUrl(fileUrl: NSURL) -> UIImage? {
-//
-//        let asset = AVAsset(url: fileUrl as URL)
-//        let imageGenerator = AVAssetImageGenerator(asset: asset)
-//
-//        do {
-//            let thumbnailImage = try imageGenerator.copyCGImage(at: CMTimeMake(1, 60), actualTime: nil)
-//
-//            return UIImage(cgImage: thumbnailImage)
-//
-//        } catch let err {
-//            print(err)
-//        }
-//
-//        return nil
-//    }
-//
-//
-//    private func uploadToFirebaseStorageUsingImage(image: UIImage, completion: @escaping (_ imageUrl: String) -> ()) {
-//        let imageName = NSUUID().uuidString
-//        let ref = FIRStorage.storage().reference().child("message_images").child(imageName)
-//
-//        if let uploadData = UIImageJPEGRepresentation(image, 0.2) {
-//            ref.put(uploadData, metadata: nil, completion: { (metadata, error) in
-//                if error != nil {
-//                    print(error!)
-//                    return
-//                }
-//
-//                if let imageUrl = metadata?.downloadURL()?.absoluteString {
-//                    completion(imageUrl)
-//                }
-//            })
-//        }
-//
-//    }
-//
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        dismiss(animated: true, completion: nil)
-//    }
-//
+
+    lazy var inputContainerView: ChatInputContainerView = {
+        let chatInputContainerView = ChatInputContainerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        chatInputContainerView.chatLogController = self
+        return chatInputContainerView
+    }()
+
+    @objc func handleUploadTap() {
+        let imagePickerController = UIImagePickerController()
+
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        imagePickerController.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+
+        present(imagePickerController, animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+
+        if let videoUrl = info[UIImagePickerControllerMediaURL] {
+            handleVideoSelectedForUrl(url: videoUrl as! NSURL)
+        } else {
+            handleImageSelectedForInfo(info: info as [String : AnyObject])
+        }
+
+        dismiss(animated: true, completion: nil)
+    }
+
+    private func handleImageSelectedForInfo(info: [String: AnyObject]) {
+        var selectedImageFromPicker: UIImage?
+
+        if let editedImage = info["UIImagePickerControllerEditedImage"] {
+            selectedImageFromPicker = editedImage as? UIImage
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] {
+            selectedImageFromPicker = originalImage as? UIImage
+        }
+
+        if let selctedImage = selectedImageFromPicker {
+            uploadToFirebaseStorageUsingImage(image: selctedImage, completion: { (imageUrl) in
+                self.sendMessageWithImageUrl(imageUrl: imageUrl, image: selctedImage)
+            })
+        }
+    }
+
+    private func handleVideoSelectedForUrl(url: NSURL) {
+        let filename = NSUUID().uuidString + ".mov"
+        let uploadTask = Storage.storage().reference().child("message_movies").child(filename).putFile(from: url as URL, metadata: nil, completion: { (metadata, error) in
+            if error != nil {
+                print(error!)
+            }
+
+            if let videoUrl = metadata?.downloadURL()?.absoluteString {
+
+
+                if let thumbnailImage = self.thumbnailImageForFileUrl(fileUrl: url) {
+
+                    self.uploadToFirebaseStorageUsingImage(image: thumbnailImage, completion: { (imageUrl) in
+                        let properties: [String: AnyObject] = ["imageUrl": imageUrl as AnyObject,
+                                                               "imageWidth": thumbnailImage.size.width as AnyObject,
+                                                               "imageHeight": thumbnailImage.size.height as AnyObject,
+                                                               "videoUrl": videoUrl as AnyObject]
+                        self.sendMessageWithProperties(properties: properties)
+                    })
+                }
+
+            }
+
+        })
+
+        uploadTask.observe(.progress) { (snapshot) in
+            if let completedUnitCount = snapshot.progress?.completedUnitCount {
+                self.navigationItem.title = String(completedUnitCount)
+            }
+        }
+
+        uploadTask.observe(.success) { (snapshot) in
+            self.navigationItem.title = self.user?.username
+        }
+
+    }
+
+    private func thumbnailImageForFileUrl(fileUrl: NSURL) -> UIImage? {
+
+        let asset = AVAsset(url: fileUrl as URL)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+
+        do {
+            let thumbnailImage = try imageGenerator.copyCGImage(at: CMTimeMake(1, 60), actualTime: nil)
+
+            return UIImage(cgImage: thumbnailImage)
+
+        } catch let err {
+            print(err)
+        }
+
+        return nil
+    }
+
+
+    private func uploadToFirebaseStorageUsingImage(image: UIImage, completion: @escaping (_ imageUrl: String) -> ()) {
+        let imageName = NSUUID().uuidString
+        let ref = Storage.storage().reference().child("message_images").child(imageName)
+
+        if let uploadData = UIImageJPEGRepresentation(image, 0.2) {
+            ref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                if let imageUrl = metadata?.downloadURL()?.absoluteString {
+                    completion(imageUrl)
+                }
+            })
+        }
+
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+
+
     override var inputAccessoryView: UIView? {
         get {
             return inputContainerView
@@ -218,7 +216,7 @@ class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionVi
 
     }
 
-    func handleKeyboardDidShow() {
+    @objc func handleKeyboardDidShow() {
         if messages.count > 0 {
 
             let indexPath = IndexPath(item: messages.count - 1, section: 0)
@@ -265,12 +263,9 @@ class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatMessageCell
         cell.chatLogController = self
 
-
-
         let message = messages[indexPath.item]
 
         cell.message = message
-
         cell.textView.text = message.text
         setupCell(cell: cell, message: message)
 
@@ -295,7 +290,7 @@ class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionVi
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
         }
 
-        if message.fromId == FIRAuth.auth()?.currentUser?.uid {
+        if message.fromId == Auth.auth().currentUser?.uid {
             // outgoing blue
             cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
             cell.textView.textColor = UIColor.white
@@ -336,9 +331,7 @@ class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionVi
         if let text = message.text {
             height = estimatedFrameForText(text: text).height + 20
         } else if let imageWidth = message.imageWidth?.floatValue, let imageHeight = message.imageHeight?.floatValue {
-
             height = CGFloat(imageHeight / imageWidth * 200)
-
         }
 
         let width = UIScreen.main.bounds.width
@@ -349,16 +342,13 @@ class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionVi
     private func estimatedFrameForText(text: String) -> CGRect {
         let size = CGSize(width: 200, height: 100)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-
-
-        let rect = NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)], context: nil)
-
+        let rect = NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)], context: nil)
         return rect
     }
 
     
 
-    func handleSend() {
+    @objc func handleSend() {
 
         let properties: [String: AnyObject] = ["text": inputContainerView.inputTextField.text! as AnyObject]
         sendMessageWithProperties(properties: properties)
@@ -374,10 +364,10 @@ class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionVi
     }
 
     private func sendMessageWithProperties(properties: [String: AnyObject]) {
-        let ref = FIRDatabase.database().reference().child("messages")
+        let ref = Database.database().reference().child("messages")
         let childRef = ref.childByAutoId()
-        let toId = user!.id!
-        let fromId = FIRAuth.auth()?.currentUser!.uid
+        let toId = user!.userUID
+        let fromId = Auth.auth().currentUser!.uid
         let timestamp = NSNumber(value: Int(Date().timeIntervalSince1970))
 
         var value: [String: AnyObject] = ["toId": toId as AnyObject,
@@ -393,12 +383,12 @@ class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionVi
 
             self.inputContainerView.inputTextField.text = nil
 
-            let userMessagesRef = FIRDatabase.database().reference().child("user-messages").child(fromId!).child(toId)
+            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId)
             let messageId = childRef.key
 
             userMessagesRef.updateChildValues([messageId: 1])
 
-            let recipientUserMessagesRef = FIRDatabase.database().reference().child("user-messages").child(toId).child(fromId!)
+            let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId).child(fromId)
             recipientUserMessagesRef.updateChildValues([messageId: 1])
 
         }
@@ -409,62 +399,62 @@ class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionVi
     var blackBackGroundView: UIView?
     var startingImageView: UIImageView?
 
-//    func performZoomInForStartingImageView(startingImageView: UIImageView) {
-//
-//        self.startingImageView = startingImageView
-//        self.startingImageView?.isHidden = true
-//
-//        startingFrame = startingImageView.superview?.convert(startingImageView.frame, to: nil)
-//        let zoomingImageView = UIImageView(frame: startingFrame!)
-//
-//        zoomingImageView.isUserInteractionEnabled = true
-//        zoomingImageView.image = startingImageView.image
-//        zoomingImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
-//
-//
-//        if let keyWindow = UIApplication.shared.keyWindow {
-//            blackBackGroundView = UIView(frame: keyWindow.frame)
-//            blackBackGroundView?.backgroundColor = UIColor.black
-//            blackBackGroundView?.alpha = 0
-//            keyWindow.addSubview(blackBackGroundView!)
-//            keyWindow.addSubview(zoomingImageView)
-//
-//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-//                // h2 / w2 = h1 / w1
-//                // h2 = h1 / w2 * w1
-//                let height = self.startingFrame!.height / self.startingFrame!.width * keyWindow.frame.width
-//                self.blackBackGroundView?.alpha = 1
-//                self.inputContainerView.alpha = 0
-//                zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: height)
-//                zoomingImageView.center = keyWindow.center
-//
-//            }, completion: { (completed: Bool) in
-//                //                zoomOutImageView.removeFromSuperview()
-//            })
-//
-//        }
-//
-//
-//    }
+    func performZoomInForStartingImageView(startingImageView: UIImageView) {
 
-//    func handleZoomOut(tapGesture: UITapGestureRecognizer) {
-//        if let zoomOutImageView = tapGesture.view {
-//
-//            zoomOutImageView.layer.cornerRadius = 16
-//            zoomOutImageView.clipsToBounds = true
-//
-//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-//                zoomOutImageView.frame = self.startingFrame!
-//                self.blackBackGroundView?.alpha = 0
-//                self.inputContainerView.alpha = 1
-//            }, completion: { (completed: Bool) in
-//                zoomOutImageView.removeFromSuperview()
-//                self.startingImageView?.isHidden = false
-//            })
-//
-//        }
-//
-//    }
+        self.startingImageView = startingImageView
+        self.startingImageView?.isHidden = true
+
+        startingFrame = startingImageView.superview?.convert(startingImageView.frame, to: nil)
+        let zoomingImageView = UIImageView(frame: startingFrame!)
+
+        zoomingImageView.isUserInteractionEnabled = true
+        zoomingImageView.image = startingImageView.image
+        zoomingImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
+
+
+        if let keyWindow = UIApplication.shared.keyWindow {
+            blackBackGroundView = UIView(frame: keyWindow.frame)
+            blackBackGroundView?.backgroundColor = UIColor.black
+            blackBackGroundView?.alpha = 0
+            keyWindow.addSubview(blackBackGroundView!)
+            keyWindow.addSubview(zoomingImageView)
+
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                // h2 / w2 = h1 / w1
+                // h2 = h1 / w2 * w1
+                let height = self.startingFrame!.height / self.startingFrame!.width * keyWindow.frame.width
+                self.blackBackGroundView?.alpha = 1
+                self.inputContainerView.alpha = 0
+                zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: height)
+                zoomingImageView.center = keyWindow.center
+
+            }, completion: { (completed: Bool) in
+                //                zoomOutImageView.removeFromSuperview()
+            })
+
+        }
+
+
+    }
+
+    @objc func handleZoomOut(tapGesture: UITapGestureRecognizer) {
+        if let zoomOutImageView = tapGesture.view {
+
+            zoomOutImageView.layer.cornerRadius = 16
+            zoomOutImageView.clipsToBounds = true
+
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                zoomOutImageView.frame = self.startingFrame!
+                self.blackBackGroundView?.alpha = 0
+                self.inputContainerView.alpha = 1
+            }, completion: { (completed: Bool) in
+                zoomOutImageView.removeFromSuperview()
+                self.startingImageView?.isHidden = false
+            })
+
+        }
+
+    }
 
 
 
