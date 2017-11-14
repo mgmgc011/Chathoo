@@ -101,8 +101,6 @@ class ChatMessageCell: UICollectionViewCell {
         if message?.videoUrl != nil {
             return
         }
-        
-        
         if let imageView = tapGesture.view as? UIImageView {
             self.chatLogController?.performZoomInForStartingImageView(startingImageView: imageView)
         }
@@ -118,7 +116,6 @@ class ChatMessageCell: UICollectionViewCell {
         addSubview(bubbleView)
         addSubview(textView)
         addSubview(profileImageView)
-        
         
         bubbleView.addSubview(messageImageView)
         messageImageView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor).isActive = true
