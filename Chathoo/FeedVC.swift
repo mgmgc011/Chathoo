@@ -23,7 +23,7 @@ class FeedVC: UIViewController {
         
     }
     
-    func loadGroups() {
+    private func loadGroups() {
         DataService.instance.getAllGroups { (groups) in
             self.channels = groups
         }
@@ -61,8 +61,6 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = feedTB.dequeueReusableCell(withIdentifier: "cell") as? FeedCell else { return UITableViewCell() }
-        
-        
         
         
         return cell

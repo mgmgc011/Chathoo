@@ -429,7 +429,7 @@ class ChatLogVC: UICollectionViewController, UITextFieldDelegate, UICollectionVi
                 zoomingImageView.center = keyWindow.center
 
             }, completion: { (completed: Bool) in
-                //                zoomOutImageView.removeFromSuperview()
+//                                zoomOutImageView.removeFromSuperview()
             })
 
         }
