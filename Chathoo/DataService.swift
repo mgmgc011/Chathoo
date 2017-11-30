@@ -111,14 +111,6 @@ class DataService {
         var groupsArray = [Group]()
         REF_GROUPS.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
-//            let decoder = JSONDecoder()
-//
-//            do {
-//                let channel = try decoder.decode([Group].self, from: snapshot)
-//                print(channel)
-//            } catch {
-//                print("error")
-//            }
             
             
             for group in snapshot {

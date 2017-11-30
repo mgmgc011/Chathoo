@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8844E6C70C6FBAF3B0499DCA /* Pods_Chathoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79275AAC8862BBC63E0B144 /* Pods_Chathoo.framework */; };
 		BB1603831F676D01009A8EE1 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1603821F676D01009A8EE1 /* FeedCell.swift */; };
+		BB2FC30C1FCCDC67000AEC79 /* CreateGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB2FC30B1FCCDC67000AEC79 /* CreateGroup.storyboard */; };
 		BB3344241F54E3A4002EA185 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3344231F54E3A4002EA185 /* AppDelegate.swift */; };
 		BB3344261F54E3A4002EA185 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3344251F54E3A4002EA185 /* FeedVC.swift */; };
 		BB3344281F54E3A4002EA185 /* MyChatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3344271F54E3A4002EA185 /* MyChatsVC.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		BB1603821F676D01009A8EE1 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		BB2FC30B1FCCDC67000AEC79 /* CreateGroup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateGroup.storyboard; sourceTree = "<group>"; };
 		BB3344201F54E3A4002EA185 /* Chathoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chathoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3344231F54E3A4002EA185 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB3344251F54E3A4002EA185 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				BB3344291F54E3A4002EA185 /* Main.storyboard */,
 				BBFEF0F61F56262100E1E6A4 /* Feed.storyboard */,
 				BBFEF0FC1F56266700E1E6A4 /* Profile.storyboard */,
+				BB2FC30B1FCCDC67000AEC79 /* CreateGroup.storyboard */,
 				BB33FC4D1FBA6EFC003E1FD5 /* ChatInputContainerView.swift */,
 				BB1603821F676D01009A8EE1 /* FeedCell.swift */,
 				BB33FC491FBA5A13003E1FD5 /* ChatMessageCell.swift */,
@@ -249,6 +252,7 @@
 				BB33442D1F54E3A4002EA185 /* Assets.xcassets in Resources */,
 				BBFEF0FE1F56266700E1E6A4 /* Profile.storyboard in Resources */,
 				BB33442B1F54E3A4002EA185 /* Main.storyboard in Resources */,
+				BB2FC30C1FCCDC67000AEC79 /* CreateGroup.storyboard in Resources */,
 				BBFEF0F81F56262100E1E6A4 /* Feed.storyboard in Resources */,
 				BB48F70D1F6084B40095CF83 /* GoogleService-Info.plist in Resources */,
 			);
