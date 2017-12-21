@@ -13,20 +13,30 @@ class FeedVC: UIViewController {
     
     
     @IBOutlet weak var feedTB: UITableView!
-    var channels = [Group]()
+    var groups = [Group]()
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         feedTB.delegate = self
         feedTB.dataSource = self
-        
+        loadGroups()
     }
     
     private func loadGroups() {
-        DataService.instance.getAllGroups { (groups) in
-            self.channels = groups
+        let currentUser = Auth.auth().currentUser
+
+        if let userUID = currentUser?.uid {
+            DataService.instance.getMyGroups(forUID: userUID, handler: { (fetchedGroups) in
+                self.groups = fetchedGroups
+
+                print(fetchedGroups)
+            })
+
+
         }
+        
         
         
     }
@@ -56,7 +66,7 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return channels.count
+        return groups.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -19,12 +19,16 @@
 		BB33FC4A1FBA5A13003E1FD5 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB33FC491FBA5A13003E1FD5 /* ChatMessageCell.swift */; };
 		BB33FC4C1FBA69D1003E1FD5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB33FC4B1FBA69D1003E1FD5 /* Extensions.swift */; };
 		BB33FC4E1FBA6EFC003E1FD5 /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB33FC4D1FBA6EFC003E1FD5 /* ChatInputContainerView.swift */; };
+		BB38BE161FD0A4BF001BD5AD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB38BE151FD0A4BF001BD5AD /* Constants.swift */; };
 		BB3C43F81F68A10A00F6CA85 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3C43F71F68A10A00F6CA85 /* User.swift */; };
 		BB48F70D1F6084B40095CF83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB48F70C1F6084B40095CF83 /* GoogleService-Info.plist */; };
 		BB48F70F1F6085540095CF83 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB48F70E1F6085540095CF83 /* DataService.swift */; };
 		BB48F7111F608A3D0095CF83 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB48F7101F608A3D0095CF83 /* Group.swift */; };
 		BB48F7141F6091630095CF83 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB48F7131F6091630095CF83 /* SignUpVC.swift */; };
 		BB48F7161F60916D0095CF83 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB48F7151F60916D0095CF83 /* SignInVC.swift */; };
+		BB55E07B1FEB36E70006193F /* TitleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB55E07A1FEB36E70006193F /* TitleVC.swift */; };
+		BB55E07D1FEB4C6B0006193F /* DescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB55E07C1FEB4C6B0006193F /* DescriptionVC.swift */; };
+		BB6CCB331FD8AF3400FE3BE0 /* TextFieldwithCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6CCB321FD8AF3400FE3BE0 /* TextFieldwithCounter.swift */; };
 		BBF418FB1FBA57730089E6C1 /* ChatLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF418FA1FBA57730089E6C1 /* ChatLogVC.swift */; };
 		BBF418FD1FBA58AA0089E6C1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF418FC1FBA58AA0089E6C1 /* Message.swift */; };
 		BBFD57831F607F1F00B340DB /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFD57821F607F1F00B340DB /* InitialVC.swift */; };
@@ -48,12 +52,16 @@
 		BB33FC491FBA5A13003E1FD5 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		BB33FC4B1FBA69D1003E1FD5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BB33FC4D1FBA6EFC003E1FD5 /* ChatInputContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
+		BB38BE151FD0A4BF001BD5AD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BB3C43F71F68A10A00F6CA85 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BB48F70C1F6084B40095CF83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB48F70E1F6085540095CF83 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		BB48F7101F608A3D0095CF83 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		BB48F7131F6091630095CF83 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		BB48F7151F60916D0095CF83 /* SignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		BB55E07A1FEB36E70006193F /* TitleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleVC.swift; sourceTree = "<group>"; };
+		BB55E07C1FEB4C6B0006193F /* DescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionVC.swift; sourceTree = "<group>"; };
+		BB6CCB321FD8AF3400FE3BE0 /* TextFieldwithCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldwithCounter.swift; sourceTree = "<group>"; };
 		BBF418FA1FBA57730089E6C1 /* ChatLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogVC.swift; sourceTree = "<group>"; };
 		BBF418FC1FBA58AA0089E6C1 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BBFD57821F607F1F00B340DB /* InitialVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
@@ -125,9 +133,8 @@
 		BB3344371F54E446002EA185 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BBFD57821F607F1F00B340DB /* InitialVC.swift */,
-				BB48F7131F6091630095CF83 /* SignUpVC.swift */,
-				BB48F7151F60916D0095CF83 /* SignInVC.swift */,
+				BB6CCB311FD8AC6E00FE3BE0 /* CreateGroup */,
+				BB6CCB301FD8AC6400FE3BE0 /* Auth */,
 				BB3344251F54E3A4002EA185 /* FeedVC.swift */,
 				BB3344271F54E3A4002EA185 /* MyChatsVC.swift */,
 				BBF418FA1FBA57730089E6C1 /* ChatLogVC.swift */,
@@ -152,6 +159,7 @@
 				BBFEF0F61F56262100E1E6A4 /* Feed.storyboard */,
 				BBFEF0FC1F56266700E1E6A4 /* Profile.storyboard */,
 				BB2FC30B1FCCDC67000AEC79 /* CreateGroup.storyboard */,
+				BB6CCB321FD8AF3400FE3BE0 /* TextFieldwithCounter.swift */,
 				BB33FC4D1FBA6EFC003E1FD5 /* ChatInputContainerView.swift */,
 				BB1603821F676D01009A8EE1 /* FeedCell.swift */,
 				BB33FC491FBA5A13003E1FD5 /* ChatMessageCell.swift */,
@@ -162,10 +170,30 @@
 		BB33FC4F1FBA71F6003E1FD5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				BB38BE151FD0A4BF001BD5AD /* Constants.swift */,
 				BB33FC4B1FBA69D1003E1FD5 /* Extensions.swift */,
 				BBFEF0F41F56258000E1E6A4 /* UIButtonExtension.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		BB6CCB301FD8AC6400FE3BE0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				BBFD57821F607F1F00B340DB /* InitialVC.swift */,
+				BB48F7131F6091630095CF83 /* SignUpVC.swift */,
+				BB48F7151F60916D0095CF83 /* SignInVC.swift */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
+		BB6CCB311FD8AC6E00FE3BE0 /* CreateGroup */ = {
+			isa = PBXGroup;
+			children = (
+				BB55E07A1FEB36E70006193F /* TitleVC.swift */,
+				BB55E07C1FEB4C6B0006193F /* DescriptionVC.swift */,
+			);
+			name = CreateGroup;
 			sourceTree = "<group>";
 		};
 		BBFD57841F60826E00B340DB /* Services */ = {
@@ -326,11 +354,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBFD57831F607F1F00B340DB /* InitialVC.swift in Sources */,
+				BB55E07D1FEB4C6B0006193F /* DescriptionVC.swift in Sources */,
 				BB48F7141F6091630095CF83 /* SignUpVC.swift in Sources */,
 				BB48F70F1F6085540095CF83 /* DataService.swift in Sources */,
 				BB3344281F54E3A4002EA185 /* MyChatsVC.swift in Sources */,
 				BB1603831F676D01009A8EE1 /* FeedCell.swift in Sources */,
 				BBF418FB1FBA57730089E6C1 /* ChatLogVC.swift in Sources */,
+				BB6CCB331FD8AF3400FE3BE0 /* TextFieldwithCounter.swift in Sources */,
 				BB33FC4A1FBA5A13003E1FD5 /* ChatMessageCell.swift in Sources */,
 				BB48F7161F60916D0095CF83 /* SignInVC.swift in Sources */,
 				BB48F7111F608A3D0095CF83 /* Group.swift in Sources */,
@@ -342,6 +372,8 @@
 				BB3344261F54E3A4002EA185 /* FeedVC.swift in Sources */,
 				BBF418FD1FBA58AA0089E6C1 /* Message.swift in Sources */,
 				BB33FC4E1FBA6EFC003E1FD5 /* ChatInputContainerView.swift in Sources */,
+				BB38BE161FD0A4BF001BD5AD /* Constants.swift in Sources */,
+				BB55E07B1FEB36E70006193F /* TitleVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,19 +12,6 @@ import FirebaseAuth
 
 
 
-let DB_BASE = Database.database().reference()
-
-let kGROUPS = "groups"
-let kUSERS = "users"
-let kTITLE = "title"
-let kDESCRIPTION = "description"
-let kMEMBERS = "members"
-let kUSERNAME = "username"
-let kEMAIL = "email"
-let kUID = "uid"
-let kLIKES = "likes"
-let kPROVIDER = "provider"
-let kIMAGEURL = "imageURL"
 
 class DataService {
     
@@ -70,6 +57,11 @@ class DataService {
 //        Auth.auth().currentUser?.updatePassword(to: <#T##String#>, completion: <#T##UserProfileChangeCallback?##UserProfileChangeCallback?##(Error?) -> Void#>)
 //    }
     
+    func likeUser(from fromUID: String, to toUID: String) {
+        REF_USERS.child(toUID).updateChildValues([kLIKES: fromUID])
+        REF_USERS.child(fromUID).updateChildValues([kLIKED: toUID])
+    }
+    
     
     
     //    MARK: GROUPS
@@ -94,7 +86,6 @@ class DataService {
     }
     
     
-    
     //    CALL validateGroupOwner BEFORE
     func changeGroupInfo(forGroupID uid: String, withTitle title: String, andDescription description: String, handler: @escaping (_ groupUpdated: Bool, _ error: Error?) -> ()) {
         let values = [kTITLE: title, kDESCRIPTION: description]
@@ -111,7 +102,6 @@ class DataService {
         var groupsArray = [Group]()
         REF_GROUPS.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
-            
             
             for group in snapshot {
                 let userArray = group.childSnapshot(forPath: kUSERS).value as! [String]
@@ -153,6 +143,20 @@ class DataService {
             }
         }
     }
+    
+    func createGroup(creatorUID creator_UID: String, groupUID group_UID: String, groupName group_Name: String, description desc: String, handler: @escaping (_ groupCreated: Bool, _ error: Error?) -> ()) {
+        
+        let value = [kADMINS:creator_UID, kGROUPUID:group_UID, kGROUPNAME:group_Name, kDESCRIPTION: desc, kUSERS: [creator_UID]] as [String : Any]
+        REF_GROUPS.child(group_UID).updateChildValues(value) { (error, database) in
+            if error == nil {
+                handler(true, nil)
+            } else {
+                handler(false, error)
+            }
+        }
+        
+    }
+    
     
 //    func leaveGroup(userUID uid: String, fromGroupUID groupUID: String, handler: @escaping (_ groupLeft: Bool, _ error: Error?) -> ()) {
 //        

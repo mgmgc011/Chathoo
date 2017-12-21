@@ -20,12 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        if Auth.auth().currentUser == nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let initialVC = storyboard.instantiateViewController(withIdentifier: "InitialVC")
-            window?.makeKeyAndVisible()
-            window?.rootViewController?.present(initialVC, animated: true, completion: nil)
-        }
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        window?.rootViewController = UINavigationController(rootViewController: TitleVC())
+        
+//        if Auth.auth().currentUser == nil {
+//            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//            let initialVC = storyboard.instantiateViewController(withIdentifier: "InitialVC")
+//            window?.makeKeyAndVisible()
+//            window?.rootViewController?.present(initialVC, animated: true, completion: nil)
+//        }
+        
+        
         
         return true
     }
